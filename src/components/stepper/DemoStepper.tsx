@@ -9,6 +9,8 @@ export interface DemoStep {
     title: string;
     stepStatus: StepStatus;
     stepIcon: React.ReactNode;
+    displayStep: boolean;
+    displayDivider: boolean;
 }
 
 const DemoStepper = ({stepperSteps, currentStep}: { stepperSteps: DemoStep[], currentStep: DemoStep }) => {
@@ -30,9 +32,9 @@ const DemoStepper = ({stepperSteps, currentStep}: { stepperSteps: DemoStep[], cu
     return (
         <>
             <div className="flex gap-4 justify-center">
-                {stepperSteps.map((step) => (
+                {stepperSteps.filter(step => step.displayStep).map((step) => (
                     <div key={step.id} className="flex items-center gap-3">
-                        {step.index > 0 && <div className="w-6 h-1 rounded bg-gray-200"></div>}
+                        {step.displayDivider && <div className="w-6 h-1 rounded bg-gray-200"></div>}
                         <div className="flex flex-col items-center">
                             <div className={`flex items-center justify-center border border-gray-200 p-4 w-12 h-12 rounded-full ${step.stepStatus === "completed" ? "bg-green-200" : ""}`}>
                                 {getStepIcon(step)}

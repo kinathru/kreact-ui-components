@@ -1,10 +1,11 @@
 import {useState} from "react";
-import {BriefcaseBusiness, GraduationCap, Sparkles, UserRoundPen} from "lucide-react";
+import {BriefcaseBusiness, CircleCheckBig, GraduationCap, Sparkles, UserRoundPen} from "lucide-react";
 import DemoStep01 from "@/components/stepper/DemoStep01.tsx";
 import {DemoStep02} from "@/components/stepper/DemoStep02.tsx";
 import DemoStep03 from "@/components/stepper/DemoStep03.tsx";
 import DemoStep04 from "@/components/stepper/DemoStep04.tsx";
 import DemoStepper, {type StepStatus} from "@/components/stepper/DemoStepper.tsx";
+import DemoStep05 from "@/components/stepper/DemoStep05.tsx";
 
 
 const DemoStepsWizard = () => {
@@ -14,28 +15,45 @@ const DemoStepsWizard = () => {
             index: 0,
             title: "Step 01",
             stepStatus: "pending" as StepStatus,
-            stepIcon: <Sparkles />
+            stepIcon: <Sparkles />,
+            displayStep: false,
+            displayDivider: false
         },
         {
             id: "step-2",
             index: 1,
             title: "Step 02",
             stepStatus: "pending" as StepStatus,
-            stepIcon: <UserRoundPen />
+            stepIcon: <UserRoundPen />,
+            displayStep: true,
+            displayDivider: false
         },
         {
             id: "step-3",
             index: 2,
             title: "Step 03",
             stepStatus: "pending" as StepStatus,
-            stepIcon: <GraduationCap />
+            stepIcon: <GraduationCap />,
+            displayStep: true,
+            displayDivider: true
         },
         {
             id: "step-4",
             index: 3,
             title: "Step 04",
             stepStatus: "pending" as StepStatus,
-            stepIcon: <BriefcaseBusiness />
+            stepIcon: <BriefcaseBusiness />,
+            displayStep: true,
+            displayDivider: true
+        },
+        {
+            id: "step-5",
+            index: 4,
+            title: "Step 05",
+            stepStatus: "pending" as StepStatus,
+            stepIcon: <CircleCheckBig />,
+            displayStep: false,
+            displayDivider: false
         }];
 
     const [steps, setSteps] = useState(stepperSteps);
@@ -85,6 +103,7 @@ const DemoStepsWizard = () => {
                     {currentStep.index === 1 && <DemoStep02 onPrev={() => movePrev()} onNext={() => moveNext()} hasPrev={hasPrev()} hasNext={hasNext()}/>}
                     {currentStep.index === 2 && <DemoStep03 onPrev={() => movePrev()} onNext={() => moveNext()} hasPrev={hasPrev()} hasNext={hasNext()}/>}
                     {currentStep.index === 3 && <DemoStep04 onPrev={() => movePrev()} onNext={() => moveNext()} hasPrev={hasPrev()} hasNext={hasNext()}/>}
+                    {currentStep.index === 4 && <DemoStep05 onPrev={() => movePrev()} onNext={() => moveNext()} hasPrev={hasPrev()} hasNext={hasNext()}/>}
                 </div>
             </div>
     );
